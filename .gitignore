@@ -1,0 +1,19 @@
+# 忽略 Python 虚拟环境
+venv/
+env/
+
+# 忽略打包生成的文件夹
+build/
+dist/
+*.spec
+
+# 忽略 Python 缓存文件
+__pycache__/
+*.pyc
+
+# 忽略调试用的截图文件
+*.png
+*.jpg
+
+# 如果你的 config.json 里有密码，把下面这行的注释符号 # 删掉
+# config.json
