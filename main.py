@@ -241,10 +241,22 @@ def close_window():
     """
     if IS_MAC:
         pyautogui.hotkey("command", "w")
+        print("  [关闭窗口] 已发送 Mac 关闭快捷键 (Cmd+W)。")
     else:
-        pyautogui.hotkey("alt", "F4")
-    print("  [关闭窗口] 已发送关闭快捷键。")
-
+        # 🌟 Windows 增强版关闭逻辑：
+        # 有时快捷键按得太快系统检测不到，这里改用分步按下，并增加微小延迟
+        try:
+            print("  [关闭窗口] 正在向 Windows 游戏窗口发送 Alt+F4...")
+            pyautogui.keyDown('alt')
+            time.sleep(0.1)
+            pyautogui.press('f4')
+            time.sleep(0.1)
+            pyautogui.keyUp('alt')
+            print("  [关闭窗口] Alt+F4 发送完毕。")
+        except Exception as e:
+            print(f"  [关闭窗口] 发送快捷键失败: {e}")
+            
+    time.sleep(1.0)  # 留出 1 秒给窗口完全销毁，防止下一轮循环重叠
 
 def bring_game_to_front():
     """
